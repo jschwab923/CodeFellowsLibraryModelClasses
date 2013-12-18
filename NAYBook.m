@@ -27,6 +27,7 @@
     return self;
 }
 
+// If no other reference to book this method will cause book to be deallocated.
 - (void)removeFromCurrentShelf
 {
     if (self.shelf) {
@@ -36,15 +37,19 @@
 }
 
 //Assumes book can only be on one shelf at a time, like a physical book.
-- (void)addToShelf:(NAYShelf *)shelfToAddTo
+- (void)addToShelf:(NAYShelf *)shelf
 {
-    if (shelfToAddTo) {
+    if (shelf) {
         if (self.shelf) {
             [self.shelf removeBookFromShelf:self];
         }
-        self.shelf = shelfToAddTo;
-        [shelfToAddTo addBookToShelf:self];
+        self.shelf = shelf;
+        [shelf addBookToShelf:self];
     }
 }
 
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"%@ by %@", self.title, self.author];
+}
 @end

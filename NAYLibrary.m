@@ -20,15 +20,16 @@
 
 - (instancetype)init
 {
-    return [self initWithShelves:[NSArray array]];
+    return [self initWithShelves:[NSArray array] libraryName:@"Unknown"];
 }
 
-- (instancetype)initWithShelves:(NSArray *)shelves
+- (instancetype)initWithShelves:(NSArray *)shelves libraryName:(NSString *)libraryName
 {
     self = [super init];
     
     if (self && shelves) {
         _allShelves = [shelves mutableCopy];
+        _libraryName = libraryName;
     }
     
     return self;
@@ -48,23 +49,23 @@
     return nil;
 }
 
-- (void)addShelf:(NAYShelf *)shelfToAdd
+- (void)addShelf:(NAYShelf *)shelf
 {
     if (!_allShelves) {
         _allShelves = [NSMutableArray array];
     }
     
-    if (shelfToAdd) {
-        if (![_allShelves containsObject:shelfToAdd]) {
-            [_allShelves addObject:shelfToAdd];
+    if (shelf) {
+        if (![_allShelves containsObject:shelf]) {
+            [_allShelves addObject:shelf];
         }
     }
 }
 
-- (void)removeShelf:(NAYShelf *)shelfToRemove
+- (void)removeShelf:(NAYShelf *)shelf
 {
     if (_allShelves) {
-        [_allShelves removeObject:shelfToRemove];
+        [_allShelves removeObject:shelf];
     }
 }
 
