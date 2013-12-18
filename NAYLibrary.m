@@ -84,5 +84,10 @@
     }
 }
 
+-(NSString *)description
+{
+    return self.libraryName;
+}
+
 
 @end

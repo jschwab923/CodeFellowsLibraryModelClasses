@@ -73,4 +73,9 @@
     return [_booksOnShelf copy];
 }
 
+- (NSString *)description
+{
+    return self.shelfName;
+}
+
 @end
